@@ -1,0 +1,49 @@
+---
+title: "Project Showcase: Casino Lobby / Launcher"
+date: "2022-0-1"
+lastmod: "2022-04-01"
+tags: ["portfolio"]
+draft: false
+summary: "Bowie is a simple casino lobby. I've created this to learn more about frontend and to fill my portfolio with code, I will be working on it while bored finding job/next challenge."
+images: ["/static/images/bowie-rps-game.png"]
+authors: ["default"]
+---
+
+![lobbylist](/static/images/bowie-lobby-list-auth.png)
+
+# Project Showcase: Casino Lobby / Launcher
+
+This is an app I'm currently developing from scratch utilizing Lumen (backend), React/NextJS (frontend), Docker/Kubernetes (container).
+
+Simple casino lobby - api is dockerized and lumen (php), frontend nextjs just set env BACKEND_URL and you're good to go. Eventually is to make a mini 'starter' for future use when creating actual unique/indepth apps.
+
+### Auth
+
+Works on JWT and api. You can also create sessions by appending "token" params in URL query or to reconnect if you wish to skip the login screens and redirect user direct to game.
+![preauth](/static/images/bowie-preauth-guest-list.png)
+
+### Internal game
+
+As being focussed on improve my ronotend support, there are simple games. Result is generated in backend, balance of players, auth and so on is all through backend.
+
+![rps-game](/static/images/bowie-rps-game.png)
+
+### External game
+
+API does have external games support, however I do not have access currently to legal game provider, but it's straight forward to implement (any) provider.
+
+Game list for lobby is loaded from the GameKernel.php, including meta info like name/desc and so on.
+
+### Demo:
+
+You can check if [bowie.casinoman.app](https://bowie.casinoman.app) is up.
+
+- [bowie app - three in a row game & theme selection](https://www.youtube.com/watch?v=6ICsFWHlw3A)
+- [bowie app - rock paper scissors game](https://www.youtube.com/watch?v=yIDjlCI9L0c)
+
+## Github
+
+Follow progress at:
+
+- frontend: [ryan-west-casino/bowie-frontend](https://github.com/ryan-west-casino/bowie-frontend).
+- backend: [ryan-west-casino/bowie-backend](https://github.com/ryan-west-casino/bowie-backend).
