@@ -5,26 +5,43 @@ lastmod: "2022-12-14"
 tags: ["portfolio"]
 draft: false
 summary: "Bowie is a simple casino lobby. I've created this to learn more about frontend and to fill my portfolio with code, I will be working on it while bored finding job/next challenge."
-images: ["/static/images/bowie-threeinarow-game.png"]
+images: ["/static/images/bowie-rps-game.png"]
 authors: ["default"]
 ---
 
-![lobbylist](/static/images/bowie-lobby-list-auth.png)
+![lobbylist](/static/images/bowie-threeinarow-game.png)
 
 # Project Showcase: Casino Lobby / Launcher
 
 This is an app I'm currently developing from scratch utilizing Lumen (backend), React/NextJS (frontend), Docker/Kubernetes (container).
 
-Simple casino lobby - api is dockerized and lumen (php), frontend nextjs just set env BACKEND_URL and you're good to go. Eventually is to make a mini 'starter' for future use when creating actual unique/indepth apps.
+Simple casino lobby, modular game suppport - api is dockerized and lumen (php), frontend nextjs just set env BACKEND_URL and you're good to go.
+
+Eventually is to make this mini 'starter' for future use when creating actual unique/indepth apps, hence why trying to dockerize as much as possible.
+
+### Nextjs Middleware
+All API & auth requests are tunneled through the next.js frontend middleware (so direct API is hidden and no cors issue).
+
+It appends the JWT token to headers on each API request, check out middleware.ts in root dir at [ryan-west-casino/bowie-frontend](https://github.com/ryan-west-casino/bowie-frontend).
 
 ### Auth
 
-Works on JWT and api. You can also create sessions by appending "token" params in URL query or to reconnect if you wish to skip the login screens and redirect user direct to game.
+Works on JWT, generated on backend api. Included on frontend is a simple login & register screen.
+
+You can also create sessions by appending "token" params in URL query if you wish to skip the login screens and redirect user direct to game.
+
 ![preauth](/static/images/bowie-preauth-guest.png)
+
+### Lobby
+Lobby includes overview of all balances, games and user info direct from API response. 
+
+![game-list](/static/images/bowie-lobby-list-auth.png)
 
 ### Internal game
 
-As being focussed on improve my ronotend support, there are simple games. Result is generated in backend, balance of players, auth and so on is all through backend.
+As being focussed on improve my frontend skills, there are simple inhouse games included. Result is generated in backend, balance of players, auth and so on is all through backend.
+
+Meta can be set on launching game (I will be working on expanding meta to include all info, including language variables from API).
 
 ![rps-game](/static/images/bowie-rps-game.png)
 
@@ -33,8 +50,6 @@ As being focussed on improve my ronotend support, there are simple games. Result
 API does have external games support, however I do not have access currently to legal game provider, but it's straight forward to implement (any) provider.
 
 Game list for lobby is loaded from the GameKernel.php, including meta info like name/desc and so on.
-
-![game-list](/static/images/bowie-lobby-list-auth.png)
 
 ### Demo:
 
