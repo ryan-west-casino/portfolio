@@ -1,0 +1,98 @@
+---
+title: "Project Showcase: Casino Aggregation Business"
+date: "2022-01-12"
+lastmod: "2022-02-01"
+tags: ["portfolio"]
+draft: false
+summary: "Casino aggregator API & admin panel used for aggregation of over 127+ game providers."
+images: ["/static/images/aggregator.png"]
+authors: ["default"]
+---
+
+![aggregation](/static/images/aggregator.png)
+
+# Project Showcase: Casino Aggregation Business
+
+Slowly growing game offerings, available under different names like Davidkohen, Datagamble.com, ManagedCasino.com it was complimentary to inhouse casino operator software.
+
+Aggregation offered 127 game providers, with 12000+ games.
+
+I did all development, operator support, sales and marketing.
+
+Aggregation was unique as working on prepaid credit without any monthly minimums, charging operators automatically from their credit balance bi-daily for any gross revenue.
+
+It has since been openly released on [Gitlab](https://gitlab.com/ivanmontikfan), including the admin panel. Aggregation business has ceased operation due simply only having so many hours in a day.
+
+## MongoDB/Multi Database support
+
+The API basically is writing the game transactions as they happen in a seperate table/database for it be processed afterwards in queue system for actual GGR payment from the operator user, so what I did was write the actual middleware (unprocessed) in mongoDB then have the helper that runs every 1 minute from the admin environment simply copy it in a mysql/relational database for archiving/review/ggr process purposes.
+
+MongoDB has much much more room for errors as it is pretty much writing json as it happens, instead of filling per field.
+
+## Access Profiles
+
+You can create & make access profiles for your operators, basically it's a role system but you can select the currencies an 'profile' can access which in turn you can assign to specific operator API keys.
+
+You can set some other things like:
+
+- max_hourly_demosessions
+- max_hourly_callback_errors
+- max_hourly_createsession_errors
+- branded (theming system for gamelauncher, toggle 0 or 1 to disable/enable)
+- branded_launcher_baseurl (base url to the actual gamelauncher itself
+
+But also things as setting price ggr range for your clients and what not, make selective criteria on who's to go where.
+![aggregation](/static/images/2.png)
+
+## SMS Login
+
+Admin area supports SMS login, which at the time I considered as one of most safe ways to process 2fa (this opinion turned out diff hehe @Softswiss eSIM).
+
+## Error Handling
+
+There is an extensive error handler, which can be turned on per operator specifically also by operator themselves, after which for 10 minutes (at a time) the operator can review all game transactions as they happen live in special area within admin area.
+
+There is error/warning level system, depending on level specific actions are taken, such as closing down automatically of operator's API access and notifying them and you per text msg & telegram & email.
+
+## Automatic GGR
+
+You can set interval for operator to be charged within the admin area, you can fill in amount of days for a cycle. Operator can ofcourse at anytime check & review his current GGR costs.
+
+Invoices are automatically generated and sent per notification to you and to the operator. There is support to work on a prepaid balance credit, also to protect mainly yourself but also operator you can set various levels to warn operator of high GGR (for example hacked site sor whatever can incur this) and also an amount at which the operator access gets closed down.
+
+## Currency
+
+In theory all currencies are available, there is a pretty straightforward currency module where you can add in any currency/currency API. All is displayed both in the played currency and the value of currency in USD$ (AT THE TIME OF THE GAME).
+
+Reason of counting the game outcomes in USD equivelant was because I would charge the operator always and alone in USD.
+
+Currency exchange rates are updated every 15 minute. To protect potential exchange errors, there are straight forward of max. currency price change (like max 30% price change else to skip and notify you of this change).
+
+You can edit this all in the console commands area.
+
+## Index Rating
+
+You can assign providers & games resources index rating and create automatically favorable 'ordered' game lists, so that you can create the most efficient order of games to be presented on API to client semi-automatically by important factors.
+
+It's extremely important and you should always improve perfecting the game order (in my opinion) as maybe 95%~ of gameplay was on the top 100 (in listing) out of total of 7000 games, hence why I tried focus a lot on this 'gamelist generator'.
+
+Goal is to try match user in the end to constantly try to get users addicted to new "favorite" slots so they will tolerate bigger losses before leaving casino.
+
+Factors used in generating index rating for each game using automated tools on panel:
+
+- popularity (toggleable) based on net win/loss
+- fudge factor (set this to "15" to start with) so the game lists generated do look natural (so actually different providers & games are shown instead of all of pragmatic's games f.e. at the top of list)
+- base rating to game in particular (individually)
+- the base rating of a provider as a whole (you should set this depending on the amount a provider cost to you and the profit)
+
+If not satisfied simply re-roll the generation few times then make manual editions, this works with "Access Profiles" so you can even make a specific custom gamelist order for a specific client (especially with global regional differences).
+
+See for example (there is also options to upsert & change provider listings):
+
+![aggregation](/static/images/1.png)
+
+## Game Tracking & Logging
+
+Extensive tracking of game sessions, for example origin place and also it tracks player individually so you can easily create patterns and/or adapt and change which games to display to each player.
+
+Also includes general stuff using browser detection. This can be handy if you wish to put illegal games or on contrary want to protect your games/providers from illegal gambling areas more indepth.
